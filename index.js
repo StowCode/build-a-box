@@ -5,17 +5,27 @@ const productArray = [];
 
 function updateProgress(event) {
     const clickedTile = event.currentTarget;
-    const tileInnerHTML = clickedTile.innerHTML;
+    const tileData = clickedTile.getAttribute('data-productName');
 
     if (selectedProducts < maxProducts) {
         selectedProducts++;
         updateButtonBackground();
         highlightClickedTile(clickedTile);
-        productArray.push(`${tileInnerHTML}`);
+        productArray.push(`${tileData}`);
         console.log(productArray);
     } else if (selectedProducts >= 6) {
         alert('Product Maximum')
-    }
+    };
+
+    const container = document.getElementById('added-items');
+    container.innerHTML = '';
+    productArray.forEach(product => {
+        const tile = document.createElement('div');
+        tile.classList.add('product-tile');
+        tile.innerHTML = `<h3>${product}</h3>`;
+
+        container.appendChild(tile);
+    })
 }
 
 const productTiles = document.querySelectorAll('.product-tile');
@@ -41,10 +51,10 @@ function updateButtonBackground() {
 
 function highlightClickedTile(tile) {
     tile.style.background = 'green';
-
-    const removeIcon = document.createElement('button');
-    removeIcon.classList.add('remove-icon');
-    removeIcon.innerHTML = "x";
-    tile.appendChild(removeIcon);
 }
 
+
+
+// FEATURE LIST
+// 1 - Add counter to tiles for how many times they've been added
+// 2 - Add 'X' to added-items for deleting

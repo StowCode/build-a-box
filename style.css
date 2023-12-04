@@ -79,7 +79,7 @@ main {
 }
 
 main h2 {
-    margin-top: 50px;
+    margin-top: 25px;
     color: white;
     font-family:Arial, Helvetica, sans-serif;
     text-transform: uppercase;
@@ -94,8 +94,12 @@ main h2 {
     display: block;
     background: white;
     margin: 10px;
-    height: 75px;
-    width: 150px;
+    height: 100px;
+    width: 100px;
+}
+
+.product-tile:hover {
+    cursor: pointer;
 }
 
 /* Progress Bar */
@@ -107,8 +111,10 @@ main h2 {
     height: 125px;
 }
 
-.progress-section .added-items {
+.progress-section #added-items {
     position: absolute;
+    display: flex;
+    align-items: center;
     margin: 10px 10vw;
     height: 105px;
     width: 60vw;
@@ -136,3 +142,14 @@ main h2 {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 12px;
 }
+
+/* Button Panel */
+.button-panel {
+    position: absolute;
+    display: flex;
+    width: 75px;
+    border: 1px solid black;
+    justify-content: space-between;
+    align-items: center;
+}
+
