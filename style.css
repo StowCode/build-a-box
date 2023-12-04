@@ -1,0 +1,138 @@
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+body {
+    background-color: rgba(0,0,0,.8);
+}
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+    margin: 0; 
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-weight: 400;
+}
+
+/* set up the body */
+body {
+    line-height: 1.5;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* make images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Main */
+main {
+    display: flex;
+    flex-direction: column;
+    margin-inline: 10vw;
+}
+
+main h2 {
+    margin-top: 50px;
+    color: white;
+    font-family:Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+
+.product-grid {
+    display: flex;
+}
+
+.product-tile {
+    position: relative;
+    display: block;
+    background: white;
+    margin: 10px;
+    height: 75px;
+    width: 150px;
+}
+
+/* Progress Bar */
+.progress-section {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(166, 166, 166);
+    height: 125px;
+}
+
+.progress-section .added-items {
+    position: absolute;
+    margin: 10px 10vw;
+    height: 105px;
+    width: 60vw;
+    border: 1px solid red;
+}
+
+.progress-section button {
+    position: absolute;
+    right: 50px;
+    height: 50px;
+    width: 200px;
+    margin: 40px 0;
+    border: 1px solid black;
+    background: white;
+}
+
+.remove-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: black;
+    font-size: 24px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 12px;
+}
