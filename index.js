@@ -2,7 +2,6 @@ let selectedProducts = 0;
 const maxProducts = 6;
 const productArray = [];
 
-
 function updateProgress(event) {
     const clickedTile = event.currentTarget;
     const tileData = clickedTile.getAttribute('data-productName');
@@ -10,7 +9,6 @@ function updateProgress(event) {
     if (selectedProducts < maxProducts) {
         selectedProducts++;
         updateButtonBackground();
-        highlightClickedTile(clickedTile);
         productArray.push(`${tileData}`);
         console.log(productArray);
     } else if (selectedProducts >= 6) {
@@ -19,20 +17,55 @@ function updateProgress(event) {
 
     const container = document.getElementById('added-items');
     container.innerHTML = '';
-    productArray.forEach(product => {
+    productArray.forEach((product, index) => {
         const tile = document.createElement('div');
         tile.classList.add('product-tile');
-        tile.innerHTML = `<h3>${product}</h3>`;
+        tile.innerHTML = `
+            <h3>${product}</h3>
+            <button class="remove-icon" data-index="${index}">X</button>
+        `;
 
         container.appendChild(tile);
-    })
+    });
+
+    // Add event listeners to the new remove icons
+    const removeIcons = container.querySelectorAll('.remove-icon');
+    removeIcons.forEach(icon => {
+        icon.addEventListener('click', removeProduct);
+    });
+}
+
+function removeProduct(event) {
+    const clickedIndex = event.currentTarget.getAttribute('data-index');
+    productArray.splice(clickedIndex, 1);
+    selectedProducts--;
+    updateButtonBackground();
+    console.log(productArray);
+
+    const container = document.getElementById('added-items');
+    container.innerHTML = '';
+    productArray.forEach((product, index) => {
+        const tile = document.createElement('div');
+        tile.classList.add('product-tile');
+        tile.innerHTML = `
+            <h3>${product}</h3>
+            <button class="remove-icon" data-index="${index}">X</button>
+        `;
+
+        container.appendChild(tile);
+    });
+
+    // Add event listeners to the new remove icons
+    const removeIcons = container.querySelectorAll('.remove-icon');
+    removeIcons.forEach(icon => {
+        icon.addEventListener('click', removeProduct);
+    });
 }
 
 const productTiles = document.querySelectorAll('.product-tile');
 productTiles.forEach(productTile => {
     productTile.addEventListener('click', updateProgress);
-})
-
+});
 
 function updateButtonBackground() {
     const fillPercentage = (selectedProducts / maxProducts) * 100;
@@ -49,12 +82,8 @@ function updateButtonBackground() {
     }
 }
 
-function highlightClickedTile(tile) {
-    tile.style.background = 'green';
-}
-
-
 
 // FEATURE LIST
 // 1 - Add counter to tiles for how many times they've been added
 // 2 - Add 'X' to added-items for deleting
+// 3 - 'X' button functionality
